@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'KlavikaMedium-Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/KlavikaMedium-Italic'), url('./font/KlavikaMedium-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'KlavikaMedium-TF';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/KlavikaMedium-TF'), url('./font/KlavikaMedium-TF.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'KlavikaRegular-TF';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/KlavikaRegular-TF'), url('./font/KlavikaRegular-TF.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'KlavikaLight-Plain';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/KlavikaLight-Plain'), url('./font/KlavikaLight-Plain.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'KlavikaLight-Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/KlavikaLight-Italic'), url('./font/KlavikaLight-Italic.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Klavika Bold Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/Klavika Bold Bold'), url('./font/KlavikaBoldBold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Klavika Bold Bold Italic';
+    font-style: normal;
+    font-weight: normal;
+    src: local('./font/Klavika Bold Bold Italic'), url('./font/KlavikaBoldBoldItalic.woff') format('woff');
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: SFProDisplay-Regular, Helvetica, Arial, sans-serif;
+}
+
+.container-body {
+    background-color: #f0f2f5;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.fb-content>h1 {
+    color: #1877f2;
+    font-size: 60px;
+    letter-spacing: -3px;
+}
+
+.fb-content>p {
+    font-size: 30px;
+}
+
+.fb-login {
+    text-align: center;
+}
+
+.fb-login-box {
+    padding: 15px;
+    width: 350px;
+    border-radius: 7px;
+    box-shadow: 1px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+}
+
+.user-input input {
+    width: 90%;
+    margin-bottom: 12px;
+    border-radius: 7px;
+    border-color: rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+    padding: 15px;
+}
+
+.fb-login-box input:focus {
+    outline-color: #1877f2;
+}
+
+.fb-submit>button {
+    font-size: 30px;
+    background-color: #1877f2;
+    border: 0;
+    color: #ffffff;
+    width: 100%;
+    font-size: 22px;
+    font-weight: 600;
+    border-radius: 7px;
+    line-height: 44px;
+    transition: .5s;
+}
+
+.fb-submit>button:hover {
+    cursor: pointer;
+    background-color: #145cbb;
+}
+
+.fb-forget-pw>a {
+    text-decoration: none;
+    color: #1877f2;
+    font-size: 16px;
+}
+
+.fb-forget-pw {
+    margin: 20px 0;
+}
+
+.fb-newacc>button {
+    background-color: #42b72a;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    font-size: 19px;
+    line-height: 45px;
+    padding: 0 16px;
+    font-weight: 600;
+}
+
+.fb-newacc>button:hover {
+    cursor: pointer;
+    background-color: #32862c;
+}
+
+@media screen and (max-width:816px) {
+    .fb-content {
+        text-align: center;
+    }
+}
