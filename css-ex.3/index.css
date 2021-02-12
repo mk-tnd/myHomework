@@ -64,6 +64,12 @@ body {
     flex-wrap: wrap;
 }
 
+.fb-content {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 450px;
+}
+
 .fb-content>h1 {
     color: #1877f2;
     font-size: 60px;
@@ -79,6 +85,7 @@ body {
 }
 
 .fb-login-box {
+    margin: 0 auto;
     padding: 15px;
     width: 350px;
     border-radius: 7px;
@@ -136,6 +143,7 @@ body {
     line-height: 45px;
     padding: 0 16px;
     font-weight: 600;
+    transition: .5s;
 }
 
 .fb-newacc>button:hover {
@@ -143,7 +151,28 @@ body {
     background-color: #32862c;
 }
 
-@media screen and (max-width:816px) {
+.container-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fb-country-list {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+@media screen and (max-width:1070px) {
+    .fb-content {
+        flex: 0 0 350px;
+    }
+    .fb-content>p {
+        font-size: 26px;
+    }
+}
+
+@media screen and (max-width:729px) {
     .fb-content {
         text-align: center;
     }
