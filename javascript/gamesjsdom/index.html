@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiceGame</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="container banner">
+        <div class="display-2 text-center">Dice Games</div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 p-0">
+                <div class="p1 score">
+                    <div class="score-newscore">
+                        <h1>PLAYER 1</h1>
+                        <div class="display-2 font-weight-bold" style="color: darkblue;">0</div>
+                    </div>
+                    <div class="score-currentscore p1-current-score">
+                        <h4>CURRENT</h4>
+                        <h3>0</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="show-score">
+                <div>
+                    <button onclick="location.reload()" class="show-score-newgame">
+                        New Games
+                    </button>
+                </div>
+                <div>
+                    <img src="images/Dice-1-a.png" width="200" alt="" class="roll-dice img-fluid">
+                </div>
+                <div class="d-flex flex-column">
+                    <button class="show-score-button roll">
+                        Roll Dice
+                    </button>
+                    <button class="show-score-button hold">
+                        Hold
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 p-0">
+                <div class="p2 score">
+                    <div class="score-newscore">
+                        <h1>PLAYER 2</h1>
+                        <div class="display-2 font-weight-bold" style="color: darkblue;">0</div>
+                    </div>
+                    <div class="score-currentscore p2-current-score">
+                        <h4>CURRENT</h4>
+                        <h3>0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 80vh;
+    flex-direction: column;
+    text-align: center;
+}
+
+.score-currentscore {
+    background-color: blue;
+    padding: 30px;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.p1 {
+    background-color: royalblue;
+}
+
+.p2 {
+    background-color: skyblue;
+}
+
+.show-score {
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 80vh;
+}
+
+.show-score-button {
+    margin: 10px
+}
