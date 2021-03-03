@@ -101,3 +101,5 @@ clickForHold.addEventListener("click", () => {
     }
   }
 });
+
+// responsive function
