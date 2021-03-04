@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import React from "react";
-import { css } from "@emotion/react";
 
 class App extends React.Component {
   state = {
@@ -17,18 +16,37 @@ class App extends React.Component {
     console.log(e.target.value);
   };
 
-  handleAdd = () => {};
+  handleAdd = () => {
+    this.setState({
+      list: [...this.state.list, { task: this.state.text, status: false }],
+      text: "",
+    });
+  };
 
-  handleEdit = () => {};
+  handleEdit = (indexToEdit) => {
+    const textEdit = prompt("Enter task");
+    const newList = [...this.state.list];
+    newList[indexToEdit].task = textEdit;
+    this.setState({
+      list: newList,
+    });
+  };
 
-  handleDelete = () => {};
+  handleToggleStatus = (indexToToggle) => {
+    const newList = [...this.state.list];
+    newList[indexToToggle].status = !newList[indexToToggle].status;
+    this.setState({
+      list: newList,
+    });
+  };
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     list:[],
-  //   }
-  // }
+  handleDelete = (indexToDelete) => {
+    this.setState({
+      list: [...this.state.list].filter(
+        (item, index) => index !== indexToDelete
+      ),
+    });
+  };
 
   render() {
     console.log(this.state);
@@ -39,11 +57,12 @@ class App extends React.Component {
           value={this.state.text}
           onChange={this.handleValue}
         />
-        <button>ADD</button>
+        <button onClick={this.handleAdd}>ADD</button>
         <ul>
-          {this.state.list.map((item) => (
-            <li>
+          {this.state.list.map((item, index) => (
+            <li key={index}>
               <span
+                onClick={() => this.handleToggleStatus(index)}
                 style={{
                   marginRight: "20px",
                   textDecoration: item.status ? "line-through" : "none",
@@ -51,9 +70,8 @@ class App extends React.Component {
               >
                 {item.task}
               </span>
-
-              <button>EDIT</button>
-              <button>DEL</button>
+              <button onClick={() => this.handleEdit(index)}>EDIT</button>
+              <button onClick={() => this.handleDelete(index)}>DEL</button>
             </li>
           ))}
         </ul>
