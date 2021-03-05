@@ -5,9 +5,11 @@ import { PencilSquare } from "react-bootstrap-icons";
 import { useState } from "react";
 
 function ListItem(props) {
+  const [toExpire, setToExpire] = useState(false);
   const [text, setText] = useState("");
   const [edit, setToEdit] = useState(true);
-  const { id, task, status } = props.item;
+  const [times, setTimes] = useState("");
+  const { id, task, date, status } = props.item;
 
   function handleDelete(idToDelete) {
     props.setList(props.list.filter((val) => val.id !== idToDelete));
@@ -52,6 +54,27 @@ function ListItem(props) {
     );
   }
 
+  function toCountDown() {
+    const expDate = new Date(date).getTime();
+    setInterval(() => {
+      let nowDate = new Date().getTime();
+      let timeLeft = expDate - nowDate;
+      let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      let hours = Math.floor(
+        (timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+      timeLeft === 0
+        ? setTimes("Expires!")
+        : setTimes(
+            `${days} Days ${hours} Hours ${minutes} Min ${seconds} Secs`
+          );
+    }, 1000);
+  }
+
+  toCountDown();
+
   return (
     <div
       css={css`
@@ -68,7 +91,7 @@ function ListItem(props) {
       }}
       className="card-body d-flex flex-column"
     >
-      <div onDoubleClick={() => handleReuse(id)}>
+      <div>
         {edit ? (
           <div
             css={css`
@@ -79,6 +102,7 @@ function ListItem(props) {
               className="card-text"
               style={{
                 marginRight: "20px",
+                marginBottom: "0",
               }}
             >
               {task}
@@ -108,6 +132,14 @@ function ListItem(props) {
             </button>
           </div>
         )}
+        <p
+          css={css`
+            cursor: pointer;
+          `}
+          onClick={() => setToExpire(!toExpire)}
+        >
+          {toExpire ? times : date}
+        </p>
       </div>
       <div className="d-flex justify-content-end">
         <div

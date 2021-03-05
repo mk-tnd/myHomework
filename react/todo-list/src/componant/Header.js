@@ -1,5 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import { useState } from "react";
+
 let saveList = [];
 
 function Header(props) {
@@ -37,21 +37,17 @@ function Header(props) {
   return (
     <div>
       <nav className="navbar navbar-dark bg-primary justify-content-between p-3">
-        <div className="navbar-brand">To Do-List App</div>
+        <div className="navbar-brand">
+          {props.toAdd ? "Add New List" : "To Do-List App"}
+        </div>
         <form onSubmit={handleSubmitForm} className="form-inline">
           <input
             className="form-control mr-sm-2"
             type="text"
             value={text}
             onChange={handleTextChange}
-            placeholder="Add/Search"
+            placeholder="Search"
           />
-          <button
-            className="btn btn-outline btn-dark m-2 my-sm-0"
-            type="submit"
-          >
-            ADD
-          </button>
           <button
             className="btn btn-outline btn-dark m-2 my-sm-0"
             type="button"
