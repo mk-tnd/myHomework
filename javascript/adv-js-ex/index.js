@@ -816,69 +816,187 @@ console.log(sales.length);
 
 //2. จำนวนลูกค้าที่แตกต่างกัน มีใครบ้าง
 
-const custommer = sales.reduce((acc, curr) => {
-  currprice = curr.product.unitPrice;
-
-  return;
+const uniqueCustomer = sales.reduce((acc, curr) => {
+  const customer = curr.customer;
+  return customer in acc
+    ? {
+        ...acc,
+        [customer]: { ...acc[customer], amount: acc[customer].amount + 1 },
+      }
+    : { ...acc, [customer]: { amount: 1, paid: 0 } };
 }, {});
 
-console.log(custommer);
+const uniqueCustomerPaid = sales.reduce((acc, curr) => {
+  const customer = curr.customer;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [customer]: { ...acc[customer], paid: acc[customer].paid + finalPrice },
+  };
+}, uniqueCustomer);
+
+console.log(uniqueCustomerPaid);
 
 //3. ยอดขายทั้งหมด (หลังหัก discount)
 
-/* const total = sales.reduce((acc, curr) => {
+const total = sales.reduce((acc, curr) => {
   const discounted = !curr.discount
     ? curr.product.unitPrice
     : curr.product.unitPrice / 1 - curr.discount;
   return Math.round(acc + discounted);
 }, 0);
 
-console.log(total); */
+console.log(total);
+
+// {
+//   id: 54,
+//   product: {
+//     id: 14,
+//     name: "iPhone",
+//     model: "12 Mini",
+//     unitPrice: 25900,
+//   },
+//   saleDate: "07-01-2021",
+//   customer: "Um",
+//   discount: 0.1,
+//   type: "Cash",
+// }
 
 //4. สินค้าที่ถูกขายมีกี่ยี่ห้อ แต่ละยี่ห้อขายไปกี่เครื่อง และ ยอดรวมเท่าไหร่
 
+const uniqueBrandAmount = sales.reduce((acc, curr) => {
+  const brand = curr.product.name;
+  return brand in acc
+    ? { ...acc, [brand]: { ...acc[brand], amount: acc[brand].amount + 1 } }
+    : { ...acc, [brand]: { amount: 1, paid: 0 } };
+}, {});
+
+console.log(uniqueBrandAmount);
+
+const uniqueBrandPaid = sales.reduce((acc, curr) => {
+  const brand = curr.product.name;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [brand]: { ...acc[brand], paid: acc[brand].paid + finalPrice },
+  };
+}, uniqueBrandAmount);
+
+console.log(uniqueBrandPaid);
+
 //5. สินค้าที่ถูกขายมีกี่รุ่นในแต่ละยี่ห้อ แต่ละรุ่นขายไปกี่เครื่อง และ ยอดรวมเท่าไหร่
+
+const uniqueModelAmount = sales.reduce((acc, curr) => {
+  const model = curr.product.model;
+  return model in acc
+    ? { ...acc, [model]: { ...acc[model], amount: acc[model].amount + 1 } }
+    : { ...acc, [model]: { amount: 1, paid: 0 } };
+}, {});
+
+console.log(uniqueModelAmount);
+
+const uniqueModelPaid = sales.reduce((acc, curr) => {
+  const model = curr.product.model;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [model]: { ...acc[model], paid: acc[model].paid + finalPrice },
+  };
+}, uniqueModelAmount);
+
+console.log(uniqueModelPaid);
 
 //6. หายอดรวมของการจ่ายแต่ละประเภท (Cash, Credit, ...)
 
+const paidAmount = sales.reduce((acc, curr) => {
+  const paidType = curr.type;
+  return paidType in curr
+    ? { ...acc, [paidType]: { ...acc[paidType] } }
+    : { ...acc, [paidType]: { paid: 0 } };
+}, {});
+
+const paidTotal = sales.reduce((acc, curr) => {
+  const paidType = curr.type;
+  const price = curr.product.unitPrice;
+  const discPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [paidType]: { ...acc[paidType], paid: acc[paidType].paid + discPrice },
+  };
+}, paidAmount);
+
+console.log(paidTotal);
+
 //7. หายอดรวมในแต่ละวัน
 
-function findAns2Ezier() {
-  const uniqueCustomersWithPhoneAmount = sales.reduce((acc, curr) => {
-    const name = curr.customer;
-    console.log([name]);
-    return name in acc
-      ? {
-          ...acc,
-          [name]: {
-            ...acc[name],
-            phoneAmount: acc[name].phoneAmount + 1,
-          },
-        }
-      : {
-          ...acc,
-          [name]: {
-            paidAmount: 0,
-            phoneAmount: 1,
-          },
-        };
-  }, {});
+const uniqueDate = sales.reduce((acc, curr) => {
+  const date = curr.saleDate;
+  return date in acc
+    ? { ...acc, [date]: { ...acc[date], amount: acc[date].amount + 1 } }
+    : { ...acc, [date]: { amount: 1, total: 0 } };
+}, {});
 
-  const uniqueWithPaidAmount = sales.reduce((acc, curr) => {
-    const name = curr.customer;
-    const productPrice = curr.product.unitPrice;
-    const finalPrice =
-      "discount" in curr ? productPrice - (1 - curr.discount) : productPrice;
-    return {
-      ...acc,
-      [name]: {
-        ...acc[name],
-        paidAmount: acc[name].paidAmount + finalPrice,
-      },
-    };
-  }, uniqueCustomersWithPhoneAmount);
+console.log(uniqueDate);
 
-  return uniqueWithPaidAmount;
-}
+const uniqueDateTotal = sales.reduce((acc, curr) => {
+  const date = curr.saleDate;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [date]: { ...acc[date], total: acc[date].total + finalPrice },
+  };
+}, uniqueDate);
 
-console.log(findAns2Ezier(sales));
+console.log(uniqueDateTotal);
+
+//8. เรียงยอดขายของแต่ละรุ่นจากมากไปน้อย
+
+const uniqueModelForSort = sales.reduce((acc, curr) => {
+  const brand = curr.product.name;
+  const model = curr.product.model;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price - (1 - curr.discount) : price;
+  return model in acc
+    ? { ...acc, [model]: [brand + model, (model[1] += finalPrice)] }
+    : { ...acc, [model]: [brand + model, finalPrice] };
+}, {});
+
+const arrOfModel = Object.values(uniqueModelForSort);
+const ModelE = arrOfModel.map((val) =>
+  val[1].toString().includes("e") ? [val[0], val[1].split("e")[1]] : val
+);
+
+const modelSort = ModelE.sort((a, b) => b[1] - a[1]);
+console.log(modelSort);
+
+//9. เรียงลูกค้าที่ซื้อมากที่สุดจากมากไปน้อย
+
+const uniqueCustomerForSort = sales.reduce((acc, curr) => {
+  const customer = curr.customer;
+  return customer in acc
+    ? {
+        ...acc,
+        [customer]: { ...acc[customer], amount: acc[customer].amount + 1 },
+      }
+    : { ...acc, [customer]: { amount: 1, paid: 0 } };
+}, {});
+
+const uniqueCustomerPaidForSort = sales.reduce((acc, curr) => {
+  const customer = curr.customer;
+  const price = curr.product.unitPrice;
+  const finalPrice = "discount" in curr ? price * (1 - curr.discount) : price;
+  return {
+    ...acc,
+    [customer]: { ...acc[customer], paid: acc[customer].paid + finalPrice },
+  };
+}, uniqueCustomerForSort);
+
+const CustomerArr = Object.entries(uniqueCustomerPaidForSort);
+
+const CustomerSort = CustomerArr.sort((a, b) => b[1].paid - a[1].paid);
+
+console.log(CustomerSort);
