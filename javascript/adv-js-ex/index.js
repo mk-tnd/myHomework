@@ -1,141 +1,3 @@
-//1.1
-
-const arr1 = [1, 2, 30, 400];
-
-const arr2 = arr1.map((item) => item * 2);
-
-console.log(arr2);
-
-//1.2
-
-const arr3 = [1, 2, 3, 4];
-
-const arr4 = arr3.map((item) => `${item}`);
-
-console.log(arr4);
-
-//1.3
-
-const arr5 = [1, "1", 2, {}];
-
-const arr6 = arr5.map((val) => `${typeof val}`);
-
-console.log(arr6);
-
-//1.4
-
-const arr7 = ["apple", "banana", "orange"];
-const arr8 = arr7.map((val) => val.toUpperCase());
-
-console.log(arr8);
-
-//1.5
-
-const arr9 = [
-  { name: "apple", age: 14 },
-  { name: "banana", age: 18 },
-  { name: "watermelon", age: 32 },
-];
-
-const arr10 = arr9.map((val) => val.name);
-
-console.log(arr10);
-
-//1.6
-
-const arr11 = [
-  { name: "apple", age: 14 },
-  { name: "banana", age: 18 },
-  { name: "watermelon", age: 32 },
-];
-
-const arr12 = arr11.map((val) => val.age);
-
-console.log(arr12);
-
-//1.7
-
-const arr13 = [
-  { name: "apple", surname: "London" },
-  { name: "banana", surname: "Bangkok" },
-  { name: "watermelon", surname: "Singapore" },
-];
-
-const arr14 = arr13.map((val) => `${val.name} ${val.surname}`);
-
-console.log(arr14);
-
-//1.8
-
-const arr15 = [1, 3, 4, 5, 6, 7, 8];
-
-const arr16 = arr15.map((val) => {
-  val = val % 2 === 0 ? "even" : "odd";
-  return val;
-});
-
-console.log(arr16);
-
-//1.9
-
-const arr17 = [1, -3, 2, 8, -4, 5];
-
-const arr18 = arr17.map((val) => Math.abs(val));
-
-console.log(arr18);
-
-//1.10
-
-const arr19 = [100, 200.25, 300.84, 400.3];
-
-const arr20 = arr19.map((val) => val.toFixed(2));
-
-console.log(arr20);
-
-//1.11
-
-const arr21 = [
-  { name: "apple", birth: "2000-01-01" },
-  { name: "banana", birth: "1990-10-01" },
-  { name: "watermelon", birth: "1985-12-01" },
-];
-
-const arr22 = arr21.map((val) => {
-  age = new Date().getFullYear() - new Date(val.birth).getFullYear();
-  return {
-    ...val,
-    age,
-  };
-});
-
-console.log(arr22);
-
-//1.12
-
-const arr23 = [
-  { name: "apple", birth: "2000-01-01" },
-  { name: "banana", birth: "1990-10-10" },
-  { name: "watermelon", birth: "1985-12-30" },
-];
-
-const arr24 = arr23.map((val) => {
-  date = new Date(val.birth).toDateString();
-  newdate = date.slice(4).split(" ");
-  newdate2 = `${newdate[1]} ${newdate[0]} ${newdate[2]}`;
-  val =
-    "<tr>" +
-    "<td>" +
-    `${val.name}` +
-    "</td>" +
-    "<td>" +
-    `${newdate2}` +
-    "</td>" +
-    "</tr>";
-  return val;
-});
-
-console.log(arr24);
-
 const sales = [
   {
     id: 1,
@@ -1000,3 +862,141 @@ const CustomerArr = Object.entries(uniqueCustomerPaidForSort);
 const CustomerSort = CustomerArr.sort((a, b) => b[1].paid - a[1].paid);
 
 console.log(CustomerSort);
+
+//1.1
+
+const arr1 = [1, 2, 30, 400];
+
+const arr2 = arr1.map((item) => item * 2);
+
+console.log(arr2);
+
+//1.2
+
+const arr3 = [1, 2, 3, 4];
+
+const arr4 = arr3.map((item) => `${item}`);
+
+console.log(arr4);
+
+//1.3
+
+const arr5 = [1, "1", 2, {}];
+
+const arr6 = arr5.map((val) => `${typeof val}`);
+
+console.log(arr6);
+
+//1.4
+
+const arr7 = ["apple", "banana", "orange"];
+const arr8 = arr7.map((val) => val.toUpperCase());
+
+console.log(arr8);
+
+//1.5
+
+const arr9 = [
+  { name: "apple", age: 14 },
+  { name: "banana", age: 18 },
+  { name: "watermelon", age: 32 },
+];
+
+const arr10 = arr9.map((val) => val.name);
+
+console.log(arr10);
+
+//1.6
+
+const arr11 = [
+  { name: "apple", age: 14 },
+  { name: "banana", age: 18 },
+  { name: "watermelon", age: 32 },
+];
+
+const arr12 = arr11.map((val) => val.age);
+
+console.log(arr12);
+
+//1.7
+
+const arr13 = [
+  { name: "apple", surname: "London" },
+  { name: "banana", surname: "Bangkok" },
+  { name: "watermelon", surname: "Singapore" },
+];
+
+const arr14 = arr13.map((val) => `${val.name} ${val.surname}`);
+
+console.log(arr14);
+
+//1.8
+
+const arr15 = [1, 3, 4, 5, 6, 7, 8];
+
+const arr16 = arr15.map((val) => {
+  val = val % 2 === 0 ? "even" : "odd";
+  return val;
+});
+
+console.log(arr16);
+
+//1.9
+
+const arr17 = [1, -3, 2, 8, -4, 5];
+
+const arr18 = arr17.map((val) => Math.abs(val));
+
+console.log(arr18);
+
+//1.10
+
+const arr19 = [100, 200.25, 300.84, 400.3];
+
+const arr20 = arr19.map((val) => val.toFixed(2));
+
+console.log(arr20);
+
+//1.11
+
+const arr21 = [
+  { name: "apple", birth: "2000-01-01" },
+  { name: "banana", birth: "1990-10-01" },
+  { name: "watermelon", birth: "1985-12-01" },
+];
+
+const arr22 = arr21.map((val) => {
+  age = new Date().getFullYear() - new Date(val.birth).getFullYear();
+  return {
+    ...val,
+    age,
+  };
+});
+
+console.log(arr22);
+
+//1.12
+
+const arr23 = [
+  { name: "apple", birth: "2000-01-01" },
+  { name: "banana", birth: "1990-10-10" },
+  { name: "watermelon", birth: "1985-12-30" },
+];
+
+const arr24 = arr23.map((val) => {
+  date = new Date(val.birth).toDateString();
+  newdate = date.slice(4).split(" ");
+  newdate2 = `${newdate[1]} ${newdate[0]} ${newdate[2]}`;
+  val =
+    "<tr>" +
+    "<td>" +
+    `${val.name}` +
+    "</td>" +
+    "<td>" +
+    `${newdate2}` +
+    "</td>" +
+    "</tr>";
+  return val;
+});
+
+console.log(arr24);
