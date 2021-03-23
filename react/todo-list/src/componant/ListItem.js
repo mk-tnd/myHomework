@@ -9,6 +9,7 @@ function ListItem(props) {
   const [text, setText] = useState("");
   const [edit, setToEdit] = useState(true);
   const [times, setTimes] = useState("");
+  const [left, setLeft] = useState("");
   const { id, task, date, status } = props.item;
 
   function handleDelete(idToDelete) {
@@ -46,14 +47,6 @@ function ListItem(props) {
     );
   }
 
-  function handleReuse(idToReuse) {
-    props.setList(
-      props.list.map((val) =>
-        idToReuse === val.id ? { ...val, status: "todo" } : val
-      )
-    );
-  }
-
   function toCountDown() {
     const expDate = new Date(date).getTime();
     setInterval(() => {
@@ -65,11 +58,12 @@ function ListItem(props) {
       );
       let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-      timeLeft === 0
-        ? setTimes("Expires!")
-        : setTimes(
-            `${days} Days ${hours} Hours ${minutes} Min ${seconds} Secs`
-          );
+      if (timeLeft <= 0) {
+        setLeft(true);
+        setTimes("Expires!!");
+      } else {
+        setTimes(`${days} Days ${hours} Hours ${minutes} Min ${seconds} Secs`);
+      }
     }, 1000);
   }
 
@@ -87,7 +81,9 @@ function ListItem(props) {
             ? "#ffc107"
             : status === "done"
             ? "#28a745"
-            : "#000000",
+            : left <= 0
+            ? "grey"
+            : "pink",
       }}
       className="card-body d-flex flex-column"
     >
