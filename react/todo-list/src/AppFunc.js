@@ -22,10 +22,6 @@ function AppFunc() {
     setText(e.target.value);
   }
 
-  // function handleAdd() {
-  //   setList([...list, { task: text, status: false }]);
-  // }
-
   function handleSubmit(e) {
     e.preventDefault();
     setList([...list, { task: text, status: false }]);
@@ -64,10 +60,7 @@ function AppFunc() {
         <button>ADD</button>
       </form>
       <ul>
-        {list.map((
-          { task, status },
-          index //{task: 'todo', status: false} const {task} = item
-        ) => (
+        {list.map(({ task, status }, index) => (
           <li key={index}>
             <span
               onClick={() => handleToggle(index)}

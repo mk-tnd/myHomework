@@ -1,0 +1,40 @@
+.postapp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  background-color: darkgoldenrod;
+}
+
+.button {
+  height: 45px;
+  background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
+
+.postbox-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.postbox {
+  box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 20px;
+  width: 1140px;
+  border-radius: 10px;
+}
+
+.postbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
